@@ -16,7 +16,8 @@ var allQuestions = [
 				"细胞免疫对消灭禽流感病毒有一定作用",
 				"体液免疫对消灭禽流感病毒有一定作用",
 				"人体通过效应B细胞和效应T细胞产生抗体抵抗病原体",
-				"禽流感病毒的抗原特异性由衣壳粒直接决定"
+				"禽流感病毒的抗原特异性由衣壳粒直接决定",
+				"None"
 			],
 		correctAnswer: 1
 	},
@@ -29,6 +30,7 @@ var allQuestions = [
 			"②④",
 			"③④"
 		],
+		correctAnswer:3
 	},
 	{
 		question: "下列实验操作中错误的是（  ） ",
@@ -50,14 +52,73 @@ var allQuestions = [
 		],
 		correctAnswer: 3
 	}
-]
+];
 
-tagQuestion = document.getElementById("question")
-now_stuff = allQuestions[0]
-tagQuestion.innerHTML = now_stuff.question
-answer = document.getElementById("answer")
+//add question
+var question_tag = document.getElementById("question");
+var now_stuff = allQuestions[0];
+question_tag.innerHTML = now_stuff.question;
+
+//add answer
+var answer = document.getElementById("choices");
+var input = new Array(null);
 for(var i=0; i<now_stuff.choices.length; i++){
-	var radio = 
-	answer.innerHTML += now_stuff.choices[i] 
+	input[i] = document.createElement("input");
+	input[i].type = "radio";
+	input[i].name = "choice";
+	input[i].value = "test";
+	input[i].id = "radio" + i.toString();
+	var lable = document.createElement("lable");
+	lable.htmlFor = input[i].id;
+	lable.innerHTML = now_stuff.choices[i];
+	answer.appendChild(input[i]);
+	var br = document.createElement("br");
+	answer.appendChild(lable);
+	answer.appendChild(br);
 }
+
+var j = 1;
+function showNext(){
+	if (j < allQuestions.length) {
+		//remove child
+		var answer = document.getElementById("choices");
+		while(answer.firstChild){
+			answer.removeChild(answer.firstChild);
+		}
+
+		if (j < allQuestions.length) {
+			//add question
+			var question_tag = document.getElementById("question");
+			var now_stuff = allQuestions[j];
+			question_tag.innerHTML = now_stuff.question;
+
+			//add answer
+			//var answer = document.getElementById("choices");
+			var input = new Array(null);
+			for(var i=0; i<now_stuff.choices.length; i++){
+				input[i] = document.createElement("input");
+				input[i].type = "radio";
+				input[i].name = "choice";
+				input[i].value = "test";
+				input[i].id = "radio" + i.toString();
+				var lable = document.createElement("lable");
+				lable.htmlFor = input[i].id;
+				lable.innerHTML = now_stuff.choices[i];
+				answer.appendChild(input[i]);
+				var br = document.createElement("br");
+				answer.appendChild(lable);
+				answer.appendChild(br);
+			}
+		}
+		j++;
+		if (j == allQuestions.length) {
+			var next_button = document.getElementById("next");
+			next_button.value = "submit";
+		}
+	}
+}
+
+
+
+
 

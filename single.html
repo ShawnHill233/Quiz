@@ -2,6 +2,7 @@
 <html>
 <head>
 	<title>Quiz</title>
+	<meta charset="UTF-8">
 	<script type="text/javascript" defer="defer" src="myscript.js"></script>
 	<link rel="stylesheet" type="text/css" href="bootstrap.css" />
 </head>
@@ -10,13 +11,16 @@
 <div class="container-fluid">
 	<div class="row-fluid">
 		<div class="col-md-3">
-			<radio>aaa</radio>
 		</div>
 		<div class="col-md-6">		
 			<h2>Question:</h2>
 			<p id="question"></p>
 			<h2>Answer:</h2>
-			<p id="answer"></p>
+			<div id="choices">
+			</div>
+			<div>
+				<input type="button" value="Next" id="next" onclick="showNext()" />
+			</div>
 		</div>
 		<div class="col-md-3">
 		</div>
